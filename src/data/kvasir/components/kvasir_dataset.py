@@ -10,12 +10,10 @@ from sklearn.model_selection import train_test_split
 from torch.utils.data import Dataset, Subset
 import torch
 
-from src.data.kvasir.components.kvasir_transform import Transform_KvasirSEGDataset
-
-class KvasirSegDataset(Dataset):
+class KvasirDataset(Dataset):
     def __init__(
         self,
-        data_dir: str = "./data",
+        data_dir: str = "data",
     ) -> None:
         super().__init__()
         
@@ -87,7 +85,7 @@ class KvasirSegDataset(Dataset):
         return mask_gray_img
         
 if __name__ == "__main__":
-    kvasir = KvasirSegDataset()
+    kvasir = KvasirDataset()
     print(len(kvasir.image_path_list))
     print(len(kvasir.masks_path_list))
     

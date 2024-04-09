@@ -1,17 +1,19 @@
-from typing import Any, Optional
+import pyrootutils
+pyrootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 
+from typing import Any, Optional
 import albumentations as A
 from albumentations import Compose
 from albumentations.pytorch.transforms import ToTensorV2
 from torch.utils.data import Dataset
 
-from src.data.kvasir.components.kvasir_seg_dataset import KvasirSegDataset
+from src.data.kvasir.components.kvasir_dataset import KvasirDataset
 
 class Transform_KvasirSEGDataset(Dataset):
     mean = None
     std = None
 
-    def __init__(self, dataset: KvasirSegDataset, transform: Optional[Compose] = None) -> None:
+    def __init__(self, dataset: KvasirDataset, transform: Optional[Compose] = None) -> None:
         super().__init__()
 
         self.dataset = dataset
@@ -42,6 +44,6 @@ class Transform_KvasirSEGDataset(Dataset):
         return image, mask
     
 if __name__ == "__main__":
-    # kvasir = Transform_KvasirSEGDataset()
-    print("reading")
-    
+    kvasir = Transform_KvasirSEGDataset(KvasirDataset())
+    image, mask = kvasir[100]
+    print(mask.max())    
