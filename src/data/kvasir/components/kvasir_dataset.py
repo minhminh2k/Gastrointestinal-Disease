@@ -4,11 +4,12 @@ import gdown
 import os 
 import numpy as np
 import pandas as pd
-
+from torchvision import datasets, transforms
 from PIL import Image, ImageFile
 from sklearn.model_selection import train_test_split
 from torch.utils.data import Dataset, Subset
 import torch
+from torchvision.datasets import FashionMNIST
 
 class KvasirDataset(Dataset):
     def __init__(
@@ -85,15 +86,26 @@ class KvasirDataset(Dataset):
         return mask_gray_img
         
 if __name__ == "__main__":
-    kvasir = KvasirDataset()
-    print(len(kvasir.image_path_list))
-    print(len(kvasir.masks_path_list))
+    # kvasir = KvasirDataset()
+    # print(len(kvasir.image_path_list))
+    # print(len(kvasir.masks_path_list))
     
-    print(kvasir.image_path_list[100])
-    image, mask = kvasir[100]
-    print(mask.dtype)
-    print(mask.max())
-    print(mask.min())
+    # print(kvasir.image_path_list[100])
+    # image, mask = kvasir[100]
+    # print(mask.dtype)
+    # print(mask.max())
+    # print(mask.min())
+    transform = transforms.Compose([transforms.ToTensor(),
+                                # transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+                               ])
+    data_train = FashionMNIST('data', train=True, download=False, transform=transform)
+    # data_train = FashionMNIST('data', train=True, download=False)
+    
+    print(len(data_train))
+    print(data_train[0][0].shape) # PIL image
+    print(data_train[0][1]) # class int
+    
+    
     
     
     
