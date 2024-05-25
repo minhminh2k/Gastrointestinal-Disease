@@ -13,9 +13,14 @@
 
 ## Description
 
-What it does
+Welcome to the Gastrointestinal Disease Segmentation repository. This project provides an easy-to-use framework of the segmentation model for Gastrointestinal Disease.
 
-## Results:
+## Dataset
+
+- [Kvasir-SEG](https://datasets.simula.no/kvasir-seg/)
+
+## Results
+
 - [Wandb](https://wandb.ai/minhqd9112003/gastrointestinal-disease?nw=nwuserminhqd9112003)
 
 ## Installation
